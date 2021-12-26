@@ -1,0 +1,20 @@
+plugins {
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
+}
+
+application {
+    mainClassName("Runner")
+}
+
+javafx {
+    version = "17"
+    modules = [ 'javafx.controls' ]
+}
+
+group 'com.chriwong'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
