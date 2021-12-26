@@ -2,9 +2,6 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -17,13 +14,16 @@ public class Runner extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        // Get filepath
-        String filepath = "yellow.file";
-        PixelyImage image = null;
+        // TODO - get filepath from TextBox
+//        String filepath = "yellow.file";
+        String rleFile = "1R1G2B1C1M2Y3W1K3K1W";
+        PixelyImage image;
 
         // Read file for Image
         try {
-            image = Service.getPixelyImageData(filepath);
+//            image = Service.getPixelyImageData(filepath);
+            byte[] rleBytes = Service.generatePixelyImageBytes(rleFile);
+            image = Service.getPixelyImageData(rleBytes);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return;
@@ -40,18 +40,6 @@ public class Runner extends Application {
         Scene scene = new Scene(vbox);
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
-
-    public static void getTextBoxField() {
-        TextField textField = new TextField();
-
-        Button button = new Button("Enter");
-
-        button.setOnAction(action -> {
-            System.out.println(textField.getText());
-        });
-
-        HBox hbox = new HBox(textField, button);
     }
 
 }

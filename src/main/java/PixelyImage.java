@@ -12,7 +12,7 @@ public class PixelyImage {
             this.blue = b;
             this.alpha = a;
         }
-        // Each byte is to be interpreted as unsigned.
+        // Each byte is to be interpreted as unsigned (range 0-255 not -128-127).
         // AND-ing with 0xFF will flip the sign.
         public int getRed() {
             return red & 0xFF;
@@ -51,7 +51,7 @@ public class PixelyImage {
                 g = bytes[i+1],
                 b = bytes[i+2],
                 a = bytes[i+3];
-            this.pixels[pixelIndex++] = new Pixel(r, g, b, a);;
+            this.pixels[pixelIndex++] = new Pixel(r, g, b, a);
         }
     }
 
