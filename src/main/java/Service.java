@@ -6,7 +6,6 @@ import java.io.FileInputStream;
 
 public class Service {
     private static final int SQUARE_SIZE = 16;
-    // TODO - implement light color palette using lowercase letters
     private static final char RED = 'R';
     private static final char GREEN = 'G';
     private static final char BLUE = 'B';
@@ -15,6 +14,13 @@ public class Service {
     private static final char YELLOW = 'Y';
     private static final char WHITE = 'W';
     private static final char BLACK = 'K';
+    private static final char LIGHTRED = 'r';
+    private static final char LIGHTGREEN = 'g';
+    private static final char LIGHTBLUE = 'b';
+    private static final char LIGHTCYAN = 'c';
+    private static final char LIGHTMAGENTA = 'm';
+    private static final char LIGHTYELLOW = 'y';
+    private static final char GREY = 'k';
 
 
     public static Canvas createCanvasForPixelyImage(PixelyImage image) {
@@ -99,6 +105,10 @@ public class Service {
             throw new Exception("RLE input is malformed.");
         }
 
+        if (rleString.contains(" ")) {
+            rleString = rleString.replaceAll(" ", "");
+        }
+
         int totalCapacity = getTotalPixels(rleString);
         byte[] pixelyBytes = new byte[(totalCapacity*4) + 2];
         int byteIndex = 2;
@@ -149,6 +159,27 @@ public class Service {
                 break;
             case BLACK:
                 insertPixelyBytes(arr, start, run, (byte)0, (byte)0, (byte)0);
+                break;
+            case LIGHTRED:
+                insertPixelyBytes(arr, start, run, (byte)255, (byte)127, (byte)127);
+                break;
+            case LIGHTGREEN:
+                insertPixelyBytes(arr, start, run, (byte)127, (byte)255, (byte)127);
+                break;
+            case LIGHTBLUE:
+                insertPixelyBytes(arr, start, run, (byte)127, (byte)127, (byte)255);
+                break;
+            case LIGHTCYAN:
+                insertPixelyBytes(arr, start, run, (byte)127, (byte)255, (byte)255);
+                break;
+            case LIGHTMAGENTA:
+                insertPixelyBytes(arr, start, run, (byte)255, (byte)127, (byte)255);
+                break;
+            case LIGHTYELLOW:
+                insertPixelyBytes(arr, start, run, (byte)255, (byte)255, (byte)127);
+                break;
+            case GREY:
+                insertPixelyBytes(arr, start, run, (byte)127, (byte)127, (byte)127);
                 break;
         }
     }

@@ -15,8 +15,8 @@ public class Runner extends Application {
     public void start(Stage primaryStage) {
 
         // TODO - get filepath from TextBox
-//        String filepath = "yellow.file";
-        String rleFile = "1R1G2B1C1M2Y3W1K3K1W";
+//        String filepath = "heart.file";
+        String rleFile = "1R 1G 2B 1r 1g 2b 1C 1M 2Y 1c 1m 2y";
         PixelyImage image;
 
         // Read file for Image
